@@ -4,34 +4,20 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 
 // import itemsData from "../assets/images.json";
-import testData from "../assets/images.json";
-
-// const testData = [
-//   {
-//     // img: "https://images.unsplash.com/photo-1551963831-b3b1ca40c98e",
-//     img: img1,
-//     title: "Breakfast",
-//     rows: 2,
-//     cols: 2,
-//   },
-// ];
+// import testData from "../assets/images.json";
 
 export default function ImageGallery({ imgSize }) {
   return (
     <Box sx={{ margin: "auto", width: 500, height: 650, overflowY: "scroll" }}>
       <ImageList variant="masonry" cols={imgSize} gap={10}>
-        {testData.map((item) => {
-          const image_logo = require("../../assets/images/logo-salad-restaurant.png");
-
+        {itemsData.map((item) => {
           return (
             <ImageListItem key={item.name}>
               <img
-                // src={`${item.url}?w=248&fit=crop&auto=format`}
-                // srcSet={`${item.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                src={`${item.img}?w=248&fit=crop&auto=format`}
+                srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
                 // src="../assets/images/Reg_balcony_strech.jpg"
                 // srcSet="../assets/images/Reg_balcony_strech.jpg"
-                src={image_logo}
-                srcSet={image_logo}
                 // src={require(`${item.img}`)}
                 // srcSet={require(`${item.img}`)}
                 // src={`${item.img}`}
