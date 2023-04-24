@@ -1,12 +1,7 @@
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import Box from "@mui/material/Box";
+import { Button, ButtonGroup, Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-const StyledButton = styled(Button)({
-  color: "#6096B4",
-  height: 40,
-});
+const StyledButton = styled(Button)({ color: "#6096B4" });
 
 export default function CategoryFilter({ categories, onChange }) {
   return (
@@ -17,16 +12,17 @@ export default function CategoryFilter({ categories, onChange }) {
         alignItems: "center",
         marginBottom: "10px",
         "& > *": {
+          // targets all direct children
           m: 1,
         },
       }}
     >
-      <ButtonGroup variant="outlined" aria-label="outlined button group">
+      <ButtonGroup variant="outlined" aria-label="categories button group">
         {categories.map((category) => (
           <StyledButton
             key={category}
-            onClick={(event) => onChange(event.target.value)}
             value={category}
+            onClick={(event) => onChange(event.target.value)}
           >
             {category}
           </StyledButton>
