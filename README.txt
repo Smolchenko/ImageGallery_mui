@@ -41,10 +41,10 @@ Image Gallery allows users to tailor their viewing experience to their specific 
 ## Installation
 
 To install Image Gallery, you can follow these steps:
-1. Clone the repository to your local machine -
-    git clone https://github.com/Smolchenko/ImageGallery_mui.git
-2. Install the dependencies using npm (or yarn)
-    npm install 
-    npm install framer-motion
-    npm install @mui/material @mui/styles @emotion/react @emotion/styled
+ - Clone the repository to your local machine -
+   git clone https://github.com/Smolchenko/ImageGallery_mui.git
+ - Install the dependencies using npm (or yarn)
+   npm install 
+   npm install framer-motion
+   npm install @mui/material @mui/styles @emotion/react @emotion/styled
     
