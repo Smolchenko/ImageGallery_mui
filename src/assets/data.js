@@ -1,10 +1,6 @@
 export const categories = ["Sleep", "Funny", "Inspector", "All"];
 
 export const itemsDataSmall = [
-<<<<<<< HEAD
-=======
-  // export const itemsData = [
->>>>>>> remove-comments-and-unrelated
   {
     title: "Reggie_business.jpg",
     img: require("./images/Reggie_business.jpg"),
@@ -29,22 +25,14 @@ export const itemsData = [
   {
     title: "Reggie_savana.jpg",
     img: require("./images/Reggie_savana.jpg"),
-<<<<<<< HEAD
-    type: categories[0],
-=======
     // type: categories[0],
     type: categories[1],
->>>>>>> remove-comments-and-unrelated
   },
   {
     title: "Reggie_study.jpg",
     img: require("./images/Reggie_study.jpg"),
-<<<<<<< HEAD
-    type: categories[0],
-=======
     // type: categories[0],
     type: categories[1],
->>>>>>> remove-comments-and-unrelated
   },
   {
     title: "Reggie_underBed.jpg",
@@ -59,12 +47,8 @@ export const itemsData = [
   {
     title: "Reggie_chairNap.jpg",
     img: require("./images/Reggie_chairNap.jpg"),
-<<<<<<< HEAD
-    type: categories[0],
-=======
     // type: categories[0],
     type: categories[1],
->>>>>>> remove-comments-and-unrelated
   },
   {
     title: "Reggie_cosmetics.jpg",
