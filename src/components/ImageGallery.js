@@ -1,6 +1,10 @@
 import { Box, ImageList, ImageListItem } from "@mui/material";
 
 export default function ImageGallery({ itemsData, columnNumber }) {
+<<<<<<< HEAD
+=======
+  console.log("columnNumber from gallery", columnNumber);
+>>>>>>> remove-comments-and-unrelated
   return (
     <Box
       sx={{
