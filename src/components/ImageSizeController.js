@@ -7,14 +7,26 @@ const StyledSlider = styled(Slider)({
   height: 8,
 });
 
+const MAX_COLUMNS_SMALL_SCREEN = 3;
+const MAX_COLUMNS_BIG_SCREEN = 5;
+const MIN_COLUMNS_ALL_SCREENS = 1;
+const MIN_STEPS_ALL_SCREENS = 1;
+
 export default function ImageSizeController({
-  imgSize,
+  imgSize, // 2
   onColumnsChange,
   disable,
+  dataLength, // big
 }) {
   const handleChange = (event, newValue) => {
     onColumnsChange(newValue);
   };
+
+  const columnAmountBigScreen = Math.min(MAX_COLUMNS_BIG_SCREEN, dataLength);
+  const columnAmountSmallScreen = Math.min(
+    MAX_COLUMNS_SMALL_SCREEN,
+    dataLength
+  );
 
   return (
     <Box sx={{ margin: "auto", width: 200 }}>
@@ -22,11 +34,18 @@ export default function ImageSizeController({
         aria-label="Columns"
         // getAriaValueText={valuetext}
         // defaultValue={imgSize}
+        // valueLabelDisplay="off"
         valueLabelDisplay="auto"
         marks
-        step={1}
-        min={1}
-        max={5}
+        step={MIN_STEPS_ALL_SCREENS}
+        min={MIN_COLUMNS_ALL_SCREENS}
+        // max={5}
+        // max={window.innerWidth <= 600 ? 3 : 5}
+        max={
+          window.innerWidth <= 600
+            ? columnAmountSmallScreen
+            : columnAmountBigScreen
+        }
         disabled={disable}
         value={imgSize}
         onChange={handleChange}
