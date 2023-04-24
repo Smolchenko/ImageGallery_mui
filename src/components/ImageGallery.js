@@ -1,21 +1,20 @@
-import Box from "@mui/material/Box";
-import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
+import { Box, ImageList, ImageListItem } from "@mui/material";
 
-export default function ImageGallery({ itemsData, imgSize }) {
+export default function ImageGallery({ itemsData, columnNumber }) {
+  console.log("columnNumber from gallery", columnNumber);
   return (
     <Box
       sx={{
         margin: "20px auto",
         width: 550,
         minWidth: "80vw",
+        maxWidth: "fit-content",
         height: 550,
         minHeight: "80vh",
-        maxWidth: "fit-content",
         overflowY: "scroll",
       }}
     >
-      <ImageList variant="masonry" cols={imgSize} gap={10}>
+      <ImageList variant="masonry" cols={columnNumber} gap={10}>
         {itemsData.map((item) => {
           return (
             <ImageListItem key={item.title}>
