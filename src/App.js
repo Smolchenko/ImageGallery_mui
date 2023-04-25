@@ -20,25 +20,24 @@ export default function App() {
       ? itemsData
       : itemsData.filter((item) => item.type.includes(filterCategory));
   const dataLength = filteredData.length;
-  // const [galleryColumns, setGalleryColumns] = useState((prevValue) =>
-  //   getAdjustedDisplayAmount(prevValue)
-  // );
+  const [selectedColumns, setSelectedColumns] = useState(3);
+
+  const getAdjustedDisplayAmount = () => {
+    return Math.min(dataLength, window.innerWidth <= 600 ? 2 : selectedColumns);
+  };
   const [galleryColumns, setGalleryColumns] = useState(() =>
     getAdjustedDisplayAmount()
   );
 
-  // function getAdjustedDisplayAmount(prevValue) {
-  //   return prevValue || Math.min(dataLength, window.innerWidth <= 600 ? 2 : 3);
-  // }
-  function getAdjustedDisplayAmount() {
-    return Math.min(dataLength, window.innerWidth <= 600 ? 2 : 3);
-  }
+  useEffect(() => {
+    setGalleryColumns(getAdjustedDisplayAmount());
+  }, [filterCategory]);
 
   useEffect(() => {
     const handleResize = () => {
-      setGalleryColumns(getAdjustedDisplayAmount); // does the same as the below, is it because of the return?
-      // setGalleryColumns(getAdjustedDisplayAmount());
+      setGalleryColumns(getAdjustedDisplayAmount());
     };
+
     window.addEventListener("resize", handleResize);
     //   window.addEventListener("orientationchange", handleResize);
 
@@ -46,15 +45,7 @@ export default function App() {
       window.removeEventListener("resize", handleResize);
       //     window.removeEventListener("orientationchange", handleResize);
     };
-  }, [dataLength]);
-  // }, [dataLength, filterCategory]);
-
-  // useEffect(() => {
-  //   // setGalleryColumns((prevValue) => getAdjustedDisplayAmount(prevValue));
-  //   setGalleryColumns(getAdjustedDisplayAmount());
-  //   console.log("useEffect2 is running");
-  // }, [dataLength, filterCategory]);
-  // // }, []);
+  }, [dataLength, selectedColumns]);
 
   return (
     <div className="App">
@@ -64,7 +55,10 @@ export default function App() {
       />
       <ImageSizeController
         galleryColumns={galleryColumns}
-        onColumnsChange={(value) => setGalleryColumns(value)}
+        onColumnsChange={(value) => {
+          setGalleryColumns(value);
+          setSelectedColumns(value);
+        }}
         dataLength={dataLength}
         isNarrowScreen={window.innerWidth <= 600}
       />
@@ -78,10 +72,10 @@ export default function App() {
 // TODO:
 // [V] 1. Add active state to the selected CategoryFilter
 
-// 2. In case - FUNNY, col = 4, switch to INSPECTOR -> I expect the col to stay at the last selected
+// [V] 2. In case - FUNNY, col = 4, switch to INSPECTOR -> I expect the col to stay at the last selected
 // unless it's not possible
 
-// 2.1 Select ANY CATEGORY, Select 3 columns. Tilt the phone and whatch he columns go down. Tilt back then don't go back
+// [V] 2.1 Select ANY CATEGORY, Select 3 columns. Tilt the phone and whatch he columns go down. Tilt back then don't go back
 
 // 3. Upon phone tilt, show all available/ adjust the column selector options.
 // maybe isNarrowScreen should be affected by it as well
