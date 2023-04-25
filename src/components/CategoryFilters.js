@@ -1,10 +1,21 @@
+import { useState } from "react";
 import { Button, ButtonGroup, Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
+
 import { categories } from "../assets/data";
 
-const StyledButton = styled(Button)({ color: "#6096B4" });
+export default function CategoryFilter({ onChange, filterCategory }) {
+  const [active, setActive] = useState(filterCategory);
 
-export default function CategoryFilter({ onChange }) {
+  const handleClick = (event) => {
+    const {
+      target: { value },
+    } = event;
+
+    onChange(value);
+    setActive(value);
+  };
+
   return (
     <Box
       sx={{
@@ -12,10 +23,7 @@ export default function CategoryFilter({ onChange }) {
         flexDirection: "column",
         alignItems: "center",
         marginBottom: "10px",
-        "& > *": {
-          // targets all direct children
-          m: 1,
-        },
+        "& > *": { m: 1 },
       }}
     >
       <ButtonGroup variant="outlined" aria-label="categories button group">
@@ -23,7 +31,11 @@ export default function CategoryFilter({ onChange }) {
           <StyledButton
             key={category}
             value={category}
-            onClick={(event) => onChange(event.target.value)}
+            onClick={handleClick}
+            sx={{
+              color: active === category && "#65647C",
+              fontWeight: active === category && "bold",
+            }}
           >
             {category}
           </StyledButton>
@@ -32,3 +44,5 @@ export default function CategoryFilter({ onChange }) {
     </Box>
   );
 }
+
+const StyledButton = styled(Button)({ color: "#6096B4" });
